@@ -3,22 +3,26 @@ using OpenQA.Selenium;
 
 namespace SFA.TL.ResultsAndCertification.Automation.Tests.Tests.TestSupport
 {
-    public abstract class BasePage
+    public class BasePage
     {
-        protected IWebDriver webDriver;
-        private By pageHeading = By.CssSelector("h1");
+        private  readonly IWebDriver webDriver;
 
-        protected BasePage(IWebDriver webDriver)
+        public BasePage(IWebDriver webDriver)
         {
             this.webDriver = webDriver;
-            //PageFactory.InitElements(webDriver, this);
         }
 
-        protected abstract Boolean SelfVerify();
+        private IWebElement pageHeading
+        {
+            get
+            {
+                return this.webDriver.FindElement(By.CssSelector("h1"));
+            }
+        }
 
         protected String GetPageHeading()
         {
-            return webDriver.FindElement(pageHeading).Text;
+            return pageHeading.Text;
         }
     }
 }
