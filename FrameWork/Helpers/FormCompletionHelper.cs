@@ -16,12 +16,12 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void ClickElement(By locator)
         {
-            webDriver.FindElement(locator).Click();
+            WebDriver.FindElement(locator).Click();
         }
 
         public static void ClearText(By locator)
         {
-            webDriver.FindElement(locator).Clear();
+            WebDriver.FindElement(locator).Clear();
         }
 
         public static void EnterText(IWebElement element, String text)
@@ -32,8 +32,8 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void EnterText(By locator, String text)
         {
-            webDriver.FindElement(locator).Clear();
-            webDriver.FindElement(locator).SendKeys(text);
+            WebDriver.FindElement(locator).Clear();
+            WebDriver.FindElement(locator).SendKeys(text);
         }
 
         public static void EnterText(IWebElement element, int value)
@@ -47,7 +47,7 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void PressTabKey()
         {
-            IWebElement element = webDriver.FindElement(By.TagName("body"));
+            IWebElement element = WebDriver.FindElement(By.TagName("body"));
             element.SendKeys(Keys.Tab);
         }
 
@@ -59,14 +59,14 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void SelectFromDropDownByValue(By locator, String value)
         {
-            IWebElement element = webDriver.FindElement(locator);
+            IWebElement element = WebDriver.FindElement(locator);
             var selectElement = new SelectElement(element);
             selectElement.SelectByValue(value);
         }
 
         public static void SelectFromDropDownByText(By locator, String value)
         {
-            IWebElement element = webDriver.FindElement(locator);
+            IWebElement element = WebDriver.FindElement(locator);
             var selectElement = new SelectElement(element);
             selectElement.SelectByText(value);
         }
@@ -87,13 +87,13 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void SelectCheckBox(By locator)
         {
-            IWebElement element = webDriver.FindElement(locator);
+            IWebElement element = WebDriver.FindElement(locator);
             SelectCheckBox(element);
         }
 
         public static void SelectRadioOptionByForAttribute(By locator, String forAttribute)
         {
-            IList<IWebElement> radios = webDriver.FindElements(locator);
+            IList<IWebElement> radios = WebDriver.FindElements(locator);
             var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
 
             if (radioToSelect != null)

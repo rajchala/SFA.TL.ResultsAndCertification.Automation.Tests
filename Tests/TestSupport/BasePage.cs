@@ -1,6 +1,5 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support;
 
 namespace SFA.TL.ResultsAndCertification.Automation.Tests.Tests.TestSupport
 {

@@ -20,7 +20,7 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Tests.TestSupport
         public Image CaptureWindow(IntPtr handle)
         {
             IntPtr hdcSrc = User32.GetWindowDC(handle);
-            User32.RECT windowRect = new User32.RECT();
+            User32.Rect windowRect = new User32.Rect();
             User32.GetWindowRect(handle, ref windowRect);
             int width = windowRect.right - windowRect.left;
             int height = windowRect.bottom - windowRect.top;
@@ -66,26 +66,26 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Tests.TestSupport
                 int nXSrc, int nYSrc, int dwRop);
 
             [DllImport("gdi32.dll")]
-            public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
+            public static extern IntPtr CreateCompatibleBitmap(IntPtr hDc, int nWidth,
                 int nHeight);
 
             [DllImport("gdi32.dll")]
-            public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+            public static extern IntPtr CreateCompatibleDC(IntPtr hDc);
 
             [DllImport("gdi32.dll")]
-            public static extern bool DeleteDC(IntPtr hDC);
+            public static extern bool DeleteDC(IntPtr hDc);
 
             [DllImport("gdi32.dll")]
             public static extern bool DeleteObject(IntPtr hObject);
 
             [DllImport("gdi32.dll")]
-            public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+            public static extern IntPtr SelectObject(IntPtr hDc, IntPtr hObject);
         }
 
         private class User32
         {
             [StructLayout(LayoutKind.Sequential)]
-            public struct RECT
+            public struct Rect
             {
                 public int left;
                 public int top;
@@ -100,10 +100,10 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Tests.TestSupport
             public static extern IntPtr GetWindowDC(IntPtr hWnd);
 
             [DllImport("user32.dll")]
-            public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
+            public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDc);
 
             [DllImport("user32.dll")]
-            public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
+            public static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
 
         }
 

@@ -8,12 +8,12 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 {
     public class PageInteractionHelper
     {
-        protected static IWebDriver webDriver;
+        protected static IWebDriver WebDriver;
         private const int ImplicitWaitTimeInSeconds = 10;
 
         public static void SetDriver(IWebDriver webDriver)
         {
-            PageInteractionHelper.webDriver = webDriver;
+            PageInteractionHelper.WebDriver = webDriver;
         }
 
         public static bool VerifyPageUrl(string actual, string expected)
@@ -31,7 +31,7 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static bool VerifyLinkIsPresent(By locator, string expected)
         {
-            String actual = webDriver.FindElement(locator).Text;
+            String actual = WebDriver.FindElement(locator).Text;
             if (actual.Contains(expected))
             {
                 return true;
@@ -56,7 +56,7 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static bool VerifyPageHeading(By locator, string expected)
         {
-            String actual = webDriver.FindElement(locator).Text;
+            String actual = WebDriver.FindElement(locator).Text;
             if (actual.Contains(expected))
             {
                 return true;
@@ -99,13 +99,13 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static bool VerifyText(By locator, string expected)
         {
-            string actual = webDriver.FindElement(locator).Text;
+            string actual = WebDriver.FindElement(locator).Text;
             return VerifyText(actual, expected);
         }
 
         public static bool VerifyValueAttributeOfAnElement(By locator, string expected)
         {
-            string actual = webDriver.FindElement(locator).GetAttribute("value");
+            string actual = WebDriver.FindElement(locator).GetAttribute("value");
             if (actual.Contains(expected))
             {
                 return true;
@@ -118,25 +118,25 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void WaitForPageToLoad(int implicitWaitTime = ImplicitWaitTimeInSeconds)
         {
-            var waitForDocumentReady = new WebDriverWait(webDriver, TimeSpan.FromSeconds(implicitWaitTime));
-            waitForDocumentReady.Until((wdriver) => ((IJavaScriptExecutor) webDriver).ExecuteScript("return document.readyState").Equals("complete"));
+            var waitForDocumentReady = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(implicitWaitTime));
+            waitForDocumentReady.Until((wdriver) => ((IJavaScriptExecutor) WebDriver).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
         public static void WaitForElementToBePresent(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
+            WebDriverWait wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(locator));
         }
 
         public static void WaitForElementToBeDisplayed(By locator, int timeInSeconds = ImplicitWaitTimeInSeconds)
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeInSeconds));
+            WebDriverWait wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
         public static void WaitForElementToBeClickable(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
+            WebDriverWait wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
             //IWebElement element = webDriverWait.Until(ExpectedConditions.ElementToBeClickable(locator));
             wait.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
@@ -146,7 +146,7 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
             TurnOffImplicitWaits();
             try
             {
-                webDriver.FindElement(locator);
+                WebDriver.FindElement(locator);
                 return true;
             }
             catch (NoSuchElementException)
@@ -164,7 +164,7 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
             TurnOffImplicitWaits();
             try
             {
-                return webDriver.FindElement(locator).Displayed;
+                return WebDriver.FindElement(locator).Displayed;
             }
             catch (Exception)
             {
@@ -178,47 +178,47 @@ namespace SFA.TL.ResultsAndCertification.Automation.Tests.Framework.Helpers
 
         public static void FocusTheElement(By locator)
         {
-            IWebElement webElement = webDriver.FindElement(locator);
-            new Actions(webDriver).MoveToElement(webElement).Perform();
+            IWebElement webElement = WebDriver.FindElement(locator);
+            new Actions(WebDriver).MoveToElement(webElement).Perform();
             WaitForElementToBeDisplayed(locator);
         }
 
         public static void FocusTheElement(IWebElement element)
         {
-            new Actions(webDriver).MoveToElement(element).Perform();
+            new Actions(WebDriver).MoveToElement(element).Perform();
         }
 
         public static void UnFocusTheElement(By locator)
         {
-            IWebElement webElement = webDriver.FindElement(locator);
-            new Actions(webDriver).MoveToElement(webElement).Perform();
+            IWebElement webElement = WebDriver.FindElement(locator);
+            new Actions(WebDriver).MoveToElement(webElement).Perform();
             WaitForElementToBeDisplayed(locator);
         }
 
         public static void UnFocusTheElement(IWebElement element)
         {
-            new Actions(webDriver).MoveToElement(element).Perform();
+            new Actions(WebDriver).MoveToElement(element).Perform();
         }
 
         public static void TurnOffImplicitWaits()
         {
-            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
         }
 
         public static void TurnOnImplicitWaits()
         {
-            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds);
         }
 
         public static String GetText(By locator)
         {
-            IWebElement webElement = webDriver.FindElement(locator);
+            IWebElement webElement = WebDriver.FindElement(locator);
             return webElement.Text;
         }
 
         public static String GetValueFromField(By locator)
         {
-            IWebElement webElement = webDriver.FindElement(locator);
+            IWebElement webElement = WebDriver.FindElement(locator);
             string value = webElement.GetAttribute("value");
             return value;
         }
