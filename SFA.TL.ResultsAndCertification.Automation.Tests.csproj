@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="C:\Users\rajch\.nuget\packages\specrun.runner\3.1.38\build\..\tools\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="FrameWork\Helpers\ProviderResultsHelper.cs" />
   </ItemGroup>
 
